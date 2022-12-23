@@ -167,7 +167,6 @@ class TM_list{
     // Дата создания и выполнения попадают в creation_date и execution_date соответственно. Такое количество списков сделано для простоты редактирования
     private final ArrayList<String> tm_list = new ArrayList<>(); //Изначальный список, куда приходит инфа из Scanner
     public static ArrayList<String> name_list = new ArrayList<>(); // Список по именам, отспличенный по ":"
-    //    public static ArrayList<String> full_list = new ArrayList<>(); // Полный список индекс + имя + информация + дата создания/выполнения
     public static ArrayList<String> creation_date = new ArrayList<>(); //Список, куда вносится дата создания
     public static ArrayList<String> execution_date = new ArrayList<>(); //Список, куда вносится дата выполнения
     public static ArrayList<String> detailed_info = new ArrayList<>(); //Список, куда вносится дата выполнения
@@ -349,19 +348,15 @@ class TM_list{
             name_list.add(parts);}
         catch (ArrayIndexOutOfBoundsException abe){
             System.out.println("Убедитесь, что написали через ':' !"); // Обработка исключения, если отсуствует ":" в написании задания
-//            System.out.println(abe.getMessage());
-
         }
     }
 
     public void splitDetails(int index){
         try{
             String parts = tm_list.get(index).split("\\:")[1];
-//        System.out.println((index+1) + ". " + parts); // Вывод индекса построчно (не в отдельном списке)
             detailed_info.add(parts);}
         catch (ArrayIndexOutOfBoundsException abe){
             System.out.println("Убедитесь, что написали через ':' !"); // Обработка исключения, если отсуствует ":" в написании задания
-//            System.out.println(abe.getMessage());
         }
     }
 
@@ -369,7 +364,6 @@ class TM_list{
     public void printList(){ //Метод, создающий список дел и задающий индекс при построчном выводе
         System.out.println("Дата создания: " + creationDate());
         for (int index = 0; index < tm_list.size(); index++){
-//            outputItemsIndex(index);
             splitName(index);
             splitDetails(index);
 
@@ -405,7 +399,6 @@ class TM_list{
 
 
     private String printItemsIndex(int index){ //Задается индекс - Этот метод выводит индекс в общий список дел
-//        System.out.println((index + 1) + ". " + tm_list.get(index));
         return (index + 1) + ". " + tm_list.get(index); //Это вариант работает, если метод указать как String
     }
 
@@ -423,7 +416,7 @@ class Input{ // Здесь сохраняются основные списки 
         else {
             System.out.println("Not found");}
         try(FileWriter writer = new FileWriter("tasks.txt", false)){
-            //Убирает квадратные скобки, но меняет тип на строковый => не работает по индексам => бесполезно
+            //Убирает квадратные скобки, но меняет тип на строковый => не работает по индексам
 
 
             String text2 = String.valueOf(TM_list.name_list);
